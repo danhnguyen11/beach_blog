@@ -20,7 +20,7 @@ var googleMapsClient = require("@google/maps").createClient({
 });
 
 //mongoose.connect("mongodb://localhost/beach_blog");
-mongodb://dan:dan@ds157682.mlab.com:57682/beach_blog;
+mongoose.connect("mongodb://dan:dan@ds157682.mlab.com:57682/beach_blog");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
