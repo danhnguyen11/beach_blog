@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <form class="form-group" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+      <label for "blog[name]">Name</label>
+      <input type="text" name="blog[name]" class="form-control" value="<%=blog.name%>" />
+      <label for "blog[adress]">Address</label>
+      <input type="text" name="blog[address]" class="form-control" value="<%=blog.address%>" />
+      <label for "blog[image]">Image</label>
+      <input type="text" name="blog[image]" class="form-control" value="<%=blog.image%>" />
+      <label for "">Content</label>
+      <textarea name="blog[body]" class="form-control" rows="10"><%=blog.body%></textarea>
+      <input class="btn btn-submit" type="submit" />
+     </form>
+</div>
+
+
+
+
+<% include ../partials/footer %>

@@ -1,0 +1,14 @@
+.blog{
+    overflow: hidden;
+    border-style: solid;
+    border-width: 2px;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    margin-top: 20px;
+}
+#delete {
+    display: inline;
+}
+#map {
+    margin-top: 20px;
+}
