@@ -3,9 +3,7 @@ var router  = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 
-router.get("/", function(req, res){
-    res.redirect("/blogs");
-});
+
 
 router.get("/register", function(req, res){
    res.render("register"); 
@@ -41,6 +39,10 @@ router.get("/logout", function(req, res){
    req.logout();
    req.flash("success", "Logged you out!");
    res.redirect("/blogs");
+});
+
+router.get("/*", function(req, res){
+    res.redirect("/blogs");
 });
 
 module.exports = router;

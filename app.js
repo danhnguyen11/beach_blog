@@ -48,7 +48,7 @@ app.use(function(req, res, next){
 });
 
 
-app.use("/",beachRoutes);
+app.use("/blogs",beachRoutes);
 app.use("/",userRoutes);
 app.use("/blogs/:id/comments",commentRoutes);
 
