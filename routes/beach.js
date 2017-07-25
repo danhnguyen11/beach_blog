@@ -6,7 +6,7 @@ var googleMapsClient = require("@google/maps").createClient({
    key: "AIzaSyCBr8rcU0kcsz1FT_bHCQnmeRqLg_7fEsM" 
 });
 
-router.get("/",function(req,res){
+router.get("/blogs",function(req,res){
     Blog.find({},function(err,blogs){
         if (err) {
             console.log(err);
@@ -17,17 +17,15 @@ router.get("/",function(req,res){
     });
 });
 
-router.get("/",function(req,res){
+router.get("/*",function(req,res){
     res.redirect("/blogs");
 })
 
-
-
-router.get("/new",middleware.isLoggedIn,function(req, res) {
+router.get("/blogs/new",middleware.isLoggedIn,function(req, res) {
     res.render("new");
 });
 
-router.post("/",middleware.isLoggedIn,function(req,res){
+router.post("/blogs",middleware.isLoggedIn,function(req,res){
     var name = req.body.name;
     var address = req.body.address;
     var image = req.body.image;
@@ -52,7 +50,7 @@ router.post("/",middleware.isLoggedIn,function(req,res){
    }) 
 });
 
-router.get("/:id",function(req, res) {
+router.get("/blogs/:id",function(req, res) {
     Blog.findById(req.params.id).populate("comments").exec(function(err,foundBlog){
         var found = foundBlog;
         googleMapsClient.geocode({
@@ -75,7 +73,7 @@ router.get("/:id",function(req, res) {
     });
 });
 
-router.get("/:id/edit",middleware.checkBlogOwnership,function(req, res) {
+router.get("/blogs/:id/edit",middleware.checkBlogOwnership,function(req, res) {
     Blog.findById(req.params.id,function(err,foundBlog){
        if(err){
           res.redirect("/blogs");
@@ -85,7 +83,7 @@ router.get("/:id/edit",middleware.checkBlogOwnership,function(req, res) {
     });
 });
 
-router.put("/:id",middleware.checkBlogOwnership,function(req,res){
+router.put("/blogs/:id",middleware.checkBlogOwnership,function(req,res){
     Blog.findByIdAndUpdate(req.params.id,req.body.blog,function(err,updatedBlog){
         if(err){
            res.redirect("/blogs");
@@ -95,7 +93,7 @@ router.put("/:id",middleware.checkBlogOwnership,function(req,res){
     })
 })
 
-router.delete("/:id",middleware.checkBlogOwnership,function(req,res){
+router.delete("/blogs/:id",middleware.checkBlogOwnership,function(req,res){
     Blog.findByIdAndRemove(req.params.id,function(err){
         if(err){
            res.redirect("/blogs");
